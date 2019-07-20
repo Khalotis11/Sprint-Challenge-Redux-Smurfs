@@ -38,33 +38,38 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <form onSubmit={this.handleSubmit}>
-          <input
-            type="text"
-            name="name"
-            value={this.state.name}
-            placeholder="name..."
-            onChange={this.handleChange}
-          />
-          <input
-            type="text"
-            name="age"
-            value={this.state.age}
-            placeholder="age..."
-            onChange={this.handleChange}
-          />
-          <input
-            type="text"
-            name="height"
-            value={this.state.height}
-            placeholder="height..."
-            onChange={this.handleChange}
-          />
+        <div className="smurfs-form">
+          <form onSubmit={this.handleSubmit}>
+            <input
+              type="text"
+              name="name"
+              value={this.state.name}
+              placeholder="name..."
+              onChange={this.handleChange}
+            />
+            <br />
+            <input
+              type="text"
+              name="age"
+              value={this.state.age}
+              placeholder="age..."
+              onChange={this.handleChange}
+            />
+            <br />
+            <input
+              type="text"
+              name="height"
+              value={this.state.height}
+              placeholder="height..."
+              onChange={this.handleChange}
+            />
+            <br />
 
-          <button type="submit"> Add Smurf </button>
-        </form>
+            <button type="submit"> Add Smurf </button>
+          </form>
+        </div>
         {this.props.smurfs.map(smurf => (
-          <div>
+          <div className="added-smurfs">
             <h2>{smurf.name}</h2>
             <p>{smurf.age}</p>
             <small>{smurf.height}</small>
