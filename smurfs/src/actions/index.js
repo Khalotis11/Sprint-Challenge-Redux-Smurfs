@@ -1,8 +1,18 @@
+import axios from "axios";
 /* 
   Action Types Go Here!
   Be sure to export each action type so you can pull it into your reducer
 */
+export const ADD_SMURFS_START = "ADD_SMURFS_START";
+export const ADD_SMURFS = "ADD_SMURFS";
+export const ADD_SMURFS_FAILURE = "ADD_SMURFS_FAILURE";
 
+export const GET_SMURF_START = "GET_SMURF_START";
+export const GET_SMURF = "GET_SMURF";
+export const GET_SMURF_FAILURE = "GET_SMURF_FAILURE";
+
+export const UPDATE_SMURF = "UPDATE_SMURF";
+export const DELETE_SMURF = "DELETE_SMURF";
 /*
   For this project you'll need at least 2 action creators for the main portion,
    and 2 more for the stretch problem.
@@ -13,3 +23,42 @@
    U - updateSmurf
    D - deleteSmurf
 */
+export const handleGetSmurfs = () => dispatch => {
+  dispatch({
+    type: GET_SMURF_START
+  });
+  axios
+    .get("http://localhost:3333/smurfs")
+    .then(res =>
+      dispatch({
+        type: GET_SMURF,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_SMURF_FAILURE,
+        payload: err
+      })
+    );
+};
+
+export const handleAddSmurfs = smurf => dispatch => {
+  dispatch({
+    type: ADD_SMURFS_START
+  });
+  axios
+    .post("http://localhost:3333/smurfs", smurf)
+    .then(res =>
+      dispatch({
+        type: ADD_SMURFS,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: ADD_SMURFS_FAILURE,
+        payload: err
+      })
+    );
+};
